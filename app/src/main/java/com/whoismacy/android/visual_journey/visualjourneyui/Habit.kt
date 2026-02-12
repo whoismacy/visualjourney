@@ -41,6 +41,7 @@ private val testingValues = listOf(true, false, true, false, null)
 @Composable
 fun Habit(modifier: Modifier = Modifier) {
     var showCameraDialog by rememberSaveable { mutableStateOf(false) }
+    var showCamera by rememberSaveable { mutableStateOf(false) }
     Surface(
         color = MaterialTheme.colorScheme.background,
         shape = MaterialTheme.shapes.large,
@@ -74,9 +75,13 @@ fun Habit(modifier: Modifier = Modifier) {
         if (showCameraDialog) {
             CameraDialog(
                 habitContent = stringResource(R.string.sample_habit),
-                onConfirmation = {},
+                onConfirmation = { showCamera = false },
                 onDismissRequest = { showCameraDialog = false },
             )
+        }
+
+        if (showCamera) {
+            CaptureJournalCamera()
         }
     }
 }

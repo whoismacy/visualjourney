@@ -9,6 +9,7 @@ lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.12.3"
 kotlin = "2.0.21"
 composeBom = "2024.09.00"
+camerax = "1.5.3"
 
 [libraries]
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "composeFoundationVersion" }
@@ -27,6 +28,7 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-core" }
+androidx-camera-compose = { module = "androidx.camera:camera-compose", version.ref = "camerax" }
 
 
 [plugins]

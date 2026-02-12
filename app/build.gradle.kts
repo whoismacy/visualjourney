@@ -41,6 +41,7 @@ dependencies {
     val cameraXVersion = "1.6.0-beta02"
     val windowSizeClass = "1.5.0-alpha13"
     val accompanistVersion = "0.37.3"
+    val cameraXViewfinder = "1.6.0-beta02"
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -51,12 +52,17 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.compose.material.icons)
+    implementation(libs.androidx.camera.compose)
     implementation("androidx.compose.material3:material3-window-size-class:$windowSizeClass")
     implementation("androidx.camera:camera-camera2:$cameraXVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraXVersion")
     implementation("androidx.camera:camera-view:$cameraXVersion")
     implementation("androidx.camera:camera-extensions:$cameraXVersion")
     implementation("com.google.accompanist:accompanist-permissions:$accompanistVersion")
+    implementation("androidx.camera.viewfinder:viewfinder-view:$cameraXViewfinder")
+    implementation("androidx.camera.viewfinder:viewfinder-core:$cameraXViewfinder")
+    implementation("androidx.camera.viewfinder:viewfinder-compose:$cameraXViewfinder")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
