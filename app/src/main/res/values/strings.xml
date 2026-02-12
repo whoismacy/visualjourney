@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Visual-Journey</string>
+    <string name="sample_habit">Run a full marathon</string>
+    <string name="bottom_navigation_home">Home</string>
+    <string name="bottom_navigation_history">History</string>
+    <string name="bottom_navigation_account">Account</string>
 </resources>

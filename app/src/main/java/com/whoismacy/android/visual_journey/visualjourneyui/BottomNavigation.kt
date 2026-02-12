@@ -18,8 +18,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.whoismacy.android.visual_journey.R
 
 @Composable
 fun BottomNavigationBar(modifier: Modifier = Modifier) {
@@ -32,7 +34,7 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
                 )
             },
             label = {
-                Text("Home")
+                Text(stringResource(R.string.bottom_navigation_home))
             },
             selected = true,
             onClick = {},
@@ -45,7 +47,7 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
                 )
             },
             label = {
-                Text("History")
+                Text(stringResource(R.string.bottom_navigation_history))
             },
             selected = false,
             onClick = {},
@@ -58,7 +60,7 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
                 )
             },
             label = {
-                Text("Account")
+                Text(stringResource(R.string.bottom_navigation_account))
             },
             selected = false,
             onClick = {},
@@ -69,8 +71,7 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
 @Composable
 fun NavigationRail(modifier: Modifier = Modifier) {
     NavigationRail(
-        modifier = modifier.padding(start = 8.dp, end = 8.dp),
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
     ) {
         Column(
             modifier
@@ -86,7 +87,7 @@ fun NavigationRail(modifier: Modifier = Modifier) {
                     )
                 },
                 label = {
-                    Text("Home")
+                    Text(stringResource(R.string.bottom_navigation_home))
                 },
                 selected = false,
                 onClick = {},
@@ -100,7 +101,7 @@ fun NavigationRail(modifier: Modifier = Modifier) {
                     )
                 },
                 label = {
-                    Text("History")
+                    Text(stringResource(R.string.bottom_navigation_history))
                 },
                 selected = false,
                 onClick = {},
@@ -114,7 +115,7 @@ fun NavigationRail(modifier: Modifier = Modifier) {
                     )
                 },
                 label = {
-                    Text("Account")
+                    Text(stringResource(R.string.bottom_navigation_account))
                 },
                 selected = false,
                 onClick = {},
