@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">Visual-Journey</string>
-    <string name="bottom_navigation_history">History</string>
-    <string name="bottom_navigation_account">Account</string>
-    <string name="bottom_navigation_home">Home</string>
 </resources>

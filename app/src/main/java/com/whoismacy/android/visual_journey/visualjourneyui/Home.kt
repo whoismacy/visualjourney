@@ -1,141 +1,59 @@
 package com.whoismacy.android.visual_journey.visualjourneyui
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationRail
-import androidx.compose.material3.NavigationRailItem
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import com.whoismacy.android.visual_journey.R
 import com.whoismacy.android.visual_journey.ui.theme.VisualJourneyTheme
 
 @Composable
-fun Homepage(windowSizeClass: WindowSizeClass) {
+fun HomeScreen(windowSizeClass: WindowSizeClass) {
     VisualJourneyTheme {
         when (windowSizeClass.widthSizeClass) {
             WindowWidthSizeClass.Compact -> {
-                BottomNavigationBar()
+                HomePortrait()
             }
 
             WindowWidthSizeClass.Expanded -> {
-                NavigationRail()
+                HomeLandScape()
             }
         }
     }
 }
 
 @Composable
-fun BottomNavigationBar(modifier: Modifier = Modifier) {
-    NavigationBar(modifier = modifier) {
-        NavigationBarItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = null,
-                )
-            },
-            label = {
-                Text(stringResource(R.string.bottom_navigation_home))
-            },
-            selected = true,
-            onClick = {},
-        )
-        NavigationBarItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Refresh,
-                    contentDescription = null,
-                )
-            },
-            label = {
-                Text(stringResource(R.string.bottom_navigation_history))
-            },
-            selected = false,
-            onClick = {},
-        )
-        NavigationBarItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                )
-            },
-            label = {
-                Text(stringResource(R.string.bottom_navigation_account))
-            },
-            selected = false,
-            onClick = {},
-        )
+fun HomePage(modifier: Modifier = Modifier) {
+    Column(
+        modifier.verticalScroll(rememberScrollState()),
+    ) { }
+}
+
+@Composable
+fun HomeLandScape() {
+    Surface(
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        Row {
+            NavigationRail()
+        }
     }
 }
 
 @Composable
-fun NavigationRail(modifier: Modifier = Modifier) {
-    NavigationRail(modifier = Modifier) {
-        NavigationRailItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = null,
-                )
-            },
-            label = {
-                Text(stringResource(R.string.bottom_navigation_home))
-            },
-            selected = false,
-            onClick = {},
-        )
-
-        NavigationRailItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Refresh,
-                    contentDescription = null,
-                )
-            },
-            label = {
-                Text(stringResource(R.string.bottom_navigation_history))
-            },
-            selected = false,
-            onClick = {},
-        )
-
-        NavigationRailItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                )
-            },
-            label = {
-                Text(
-                    stringResource(R.string.botton_mavigation_account),
-                )
-            },
-            selected = false,
-            onClick = {},
-        )
+fun HomePortrait() {
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar()
+        },
+    ) { innerPadding ->
+        HomePage(modifier = Modifier.padding(innerPadding))
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NavigationRailPreview() {
-    NavigationRail()
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomNavigationPreview() {
-    BottomNavigationBar()
 }
