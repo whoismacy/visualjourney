@@ -18,6 +18,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -27,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.whoismacy.android.visual_journey.R
 
@@ -39,9 +39,11 @@ enum class CircleSize {
 private val testingValues = listOf(true, false, true, false, null)
 
 @Composable
-fun Habit(modifier: Modifier = Modifier) {
+fun Habit(
+    modifier: Modifier = Modifier,
+    showCamera: MutableState<Boolean>,
+) {
     var showCameraDialog by rememberSaveable { mutableStateOf(false) }
-    var showCamera by rememberSaveable { mutableStateOf(false) }
     Surface(
         color = MaterialTheme.colorScheme.background,
         shape = MaterialTheme.shapes.large,
@@ -75,13 +77,9 @@ fun Habit(modifier: Modifier = Modifier) {
         if (showCameraDialog) {
             CameraDialog(
                 habitContent = stringResource(R.string.sample_habit),
-                onConfirmation = { showCamera = false },
+                onConfirmation = { showCamera.value = true },
                 onDismissRequest = { showCameraDialog = false },
             )
-        }
-
-        if (showCamera) {
-            CaptureJournalCamera()
         }
     }
 }
@@ -138,10 +136,4 @@ fun HabitConsistencyRow(habits: List<Boolean?> = testingValues) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun HabitPreview() {
-    Habit()
 }
