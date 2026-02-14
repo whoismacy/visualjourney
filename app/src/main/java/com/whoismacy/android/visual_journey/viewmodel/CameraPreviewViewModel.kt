@@ -1,7 +1,7 @@
-package com.whoismacy.android.visual_journey.visualjourneyui
+package com.whoismacy.android.visual_journey.viewmodel
 
 import android.content.Context
-import androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA
+import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -31,7 +31,7 @@ class CameraPreviewViewModel : ViewModel() {
         val processCameraProvider = ProcessCameraProvider.awaitInstance(appContext)
         processCameraProvider.bindToLifecycle(
             lifeCycleOwner,
-            DEFAULT_FRONT_CAMERA,
+            CameraSelector.DEFAULT_FRONT_CAMERA,
             cameraPreviewUseCase,
         )
 

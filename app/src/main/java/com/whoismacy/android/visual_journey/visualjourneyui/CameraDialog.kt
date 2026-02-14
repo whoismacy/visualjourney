@@ -70,7 +70,6 @@ fun CameraDialog(
                     }
                     TextButton(
                         onClick = {
-                            onDismissRequest()
                             onConfirmation()
                         },
                         modifier = Modifier.padding(16.dp),

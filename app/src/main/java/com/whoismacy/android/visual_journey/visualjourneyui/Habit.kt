@@ -41,7 +41,7 @@ private val testingValues = listOf(true, false, true, false, null)
 @Composable
 fun Habit(
     modifier: Modifier = Modifier,
-    showCamera: MutableState<Boolean>,
+    onOpenCamera: () -> Unit,
 ) {
     var showCameraDialog by rememberSaveable { mutableStateOf(false) }
     Surface(
@@ -77,7 +77,10 @@ fun Habit(
         if (showCameraDialog) {
             CameraDialog(
                 habitContent = stringResource(R.string.sample_habit),
-                onConfirmation = { showCamera.value = true },
+                onConfirmation = {
+                    showCameraDialog = false
+                    onOpenCamera()
+                },
                 onDismissRequest = { showCameraDialog = false },
             )
         }

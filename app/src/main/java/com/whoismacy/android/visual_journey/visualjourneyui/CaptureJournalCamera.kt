@@ -24,6 +24,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
+import com.whoismacy.android.visual_journey.viewmodel.CameraPreviewViewModel
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -46,9 +47,9 @@ fun CaptureJournalCamera(modifier: Modifier = Modifier) {
         ) {
             val cameraPermissionText =
                 if (cameraPermissionState.status.shouldShowRationale) {
-                    "Camera Permission is required to use this app."
+                    "Grant Camera access"
                 } else {
-                    "Grant Permission, to use Camera"
+                    "Camera Access is required to capture Journal Entries"
                 }
             Text(
                 text = cameraPermissionText,

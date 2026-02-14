@@ -22,9 +22,12 @@
             android:theme="@style/Theme.VisualJourney">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false">
         </activity>
     </application>
 
