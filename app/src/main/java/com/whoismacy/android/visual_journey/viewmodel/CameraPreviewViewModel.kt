@@ -31,7 +31,7 @@ class CameraPreviewViewModel : ViewModel() {
         val processCameraProvider = ProcessCameraProvider.awaitInstance(appContext)
         processCameraProvider.bindToLifecycle(
             lifeCycleOwner,
-            CameraSelector.DEFAULT_FRONT_CAMERA,
+            CameraSelector.DEFAULT_BACK_CAMERA,
             cameraPreviewUseCase,
         )
 

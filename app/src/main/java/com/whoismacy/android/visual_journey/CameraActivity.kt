@@ -3,7 +3,6 @@ package com.whoismacy.android.visual_journey
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -13,7 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.SwitchCamera
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -66,12 +65,12 @@ fun DisplayCamera() {
                     modifier =
                         Modifier
                             .fillMaxWidth()
-                            .padding(top = 16.dp),
+                            .padding(top = 32.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     IconButton(onClick = {}) {
                         Icon(
-                            imageVector = Icons.Default.Person,
+                            imageVector = Icons.Default.SwitchCamera,
                             contentDescription = null,
                         )
                     }

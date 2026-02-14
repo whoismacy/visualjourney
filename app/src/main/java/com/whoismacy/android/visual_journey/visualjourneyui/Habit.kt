@@ -66,7 +66,9 @@ fun Habit(
         ) {
             RadioButton(
                 selected = false,
-                onClick = {},
+                onClick = {
+                    onOpenCamera()
+                },
             )
             Text(
                 stringResource(R.string.sample_habit),
