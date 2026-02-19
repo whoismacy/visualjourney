@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -42,6 +43,9 @@ dependencies {
     val windowSizeClass = "1.5.0-alpha13"
     val accompanistVersion = "0.37.3"
     val cameraXViewfinder = "1.6.0-beta02"
+    val roomVersion = "2.8.4"
+    val hiltNavigationCompose = "1.0.0"
+    ksp("androidx.room:room-compiler:$roomVersion")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -53,6 +57,8 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.compose.material.icons)
     implementation(libs.androidx.camera.compose)
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.material3:material3-window-size-class:$windowSizeClass")
     implementation("androidx.camera:camera-camera2:$cameraXVersion")
@@ -63,7 +69,7 @@ dependencies {
     implementation("androidx.camera.viewfinder:viewfinder-view:$cameraXViewfinder")
     implementation("androidx.camera.viewfinder:viewfinder-core:$cameraXViewfinder")
     implementation("androidx.camera.viewfinder:viewfinder-compose:$cameraXViewfinder")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:$hiltNavigationCompose")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
