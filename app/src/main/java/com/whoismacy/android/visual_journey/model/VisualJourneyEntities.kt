@@ -7,15 +7,15 @@ import java.util.Date
 
 @Entity
 data class Habits(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo("habit_id") val habitId: Int,
     @ColumnInfo("date") val date: Date,
-    @ColumnInfo("complete", defaultValue = "FALSE") val habitComplete: Boolean,
+    @ColumnInfo("complete", defaultValue = "0") val habitComplete: Boolean,
 )
 
 @Entity
 data class Habit(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo("habit_name") val name: String,
     @ColumnInfo("created_on") val created: Date,
 )

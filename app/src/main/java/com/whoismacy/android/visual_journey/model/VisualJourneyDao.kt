@@ -26,7 +26,7 @@ interface VisualJourneyDao {
          */
     }
 
-    @Query("INSERT INTO `habits` (`habit_id`, `date`, `complete`) VALUES ()")
+    @Query("INSERT INTO `habits` (`habit_id`, `date`, `complete`) VALUES (:habitId, :status)")
     suspend fun markHabitComplete(
         habitId: String,
         status: Boolean,
