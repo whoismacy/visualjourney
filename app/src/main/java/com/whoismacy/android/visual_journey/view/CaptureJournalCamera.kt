@@ -1,4 +1,4 @@
-package com.whoismacy.android.visual_journey.visualjourneyui
+package com.whoismacy.android.visual_journey.view
 
 import androidx.camera.compose.CameraXViewfinder
 import androidx.compose.foundation.layout.Column

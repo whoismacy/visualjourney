@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.whoismacy.android.visual_journey.ui.theme.VisualJourneyTheme
-import com.whoismacy.android.visual_journey.visualjourneyui.HomeScreen
+import com.whoismacy.android.visual_journey.view.HomeScreen
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)

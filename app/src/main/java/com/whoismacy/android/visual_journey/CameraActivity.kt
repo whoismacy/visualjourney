@@ -1,12 +1,10 @@
 package com.whoismacy.android.visual_journey
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -32,10 +30,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.whoismacy.android.visual_journey.ui.theme.VisualJourneyTheme
+import com.whoismacy.android.visual_journey.view.CaptureJournalCamera
 import com.whoismacy.android.visual_journey.viewmodel.CameraPreviewViewModel
-import com.whoismacy.android.visual_journey.visualjourneyui.CaptureJournalCamera
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.getValue
 
 @AndroidEntryPoint
 class CameraActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.whoismacy.android.visual_journey.visualjourneyui
+package com.whoismacy.android.visual_journey.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

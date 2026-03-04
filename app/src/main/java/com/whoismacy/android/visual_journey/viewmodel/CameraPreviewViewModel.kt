@@ -1,11 +1,12 @@
 package com.whoismacy.android.visual_journey.viewmodel
 
+import android.content.ContentValues
 import android.content.Context
+import android.provider.MediaStore
 import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -67,18 +68,35 @@ class CameraPreviewViewModel
         }
 
         fun capturePhoto(context: Context) {
+            val contentValues =
+                ContentValues().apply {
+                    put(MediaStore.MediaColumns.DISPLAY_NAME, "visualjourneyimage_${System.currentTimeMillis()}")
+                    put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+                }
+
+            val contentResolver = context.contentResolver
+
+            val outputOptions =
+                ImageCapture.OutputFileOptions
+                    .Builder(
+                        contentResolver,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        contentValues,
+                    ).build()
+
             val executor = ContextCompat.getMainExecutor(context)
             cameraImageCaptureUseCase.takePicture(
+                outputOptions,
                 executor,
-                object : ImageCapture.OnImageCapturedCallback() {
-                    override fun onCaptureSuccess(image: ImageProxy) {
-                        super.onCaptureSuccess(image)
-                        image.close()
+                object : ImageCapture.OnImageSavedCallback {
+                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                        Log.d(TAG, "image saved at ${outputFileResults.savedUri}")
                     }
 
                     override fun onError(exception: ImageCaptureException) {
-                        super.onError(exception)
-                        exception.message?.let { Log.d(TAG, it) }
+                        exception.message?.let {
+                            Log.e(TAG, it)
+                        }
                     }
                 },
             )
