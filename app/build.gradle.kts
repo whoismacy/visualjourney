@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.compose.material.icons)
     implementation(libs.androidx.camera.compose)
+    implementation("io.coil-kt.coil3:coil-compose:3.4.0")
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.compose.material:material-icons-extended")

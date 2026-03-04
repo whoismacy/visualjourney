@@ -1,5 +1,10 @@
 package com.whoismacy.android.visual_journey.view
 
+import android.net.Uri
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -78,7 +83,7 @@ fun Habit(
         if (showCameraDialog) {
             CameraDialog(
                 habitContent = stringResource(R.string.sample_habit),
-                onConfirmation = {
+                onCameraConfirmation = {
                     showCameraDialog = false
                     onOpenCamera()
                 },

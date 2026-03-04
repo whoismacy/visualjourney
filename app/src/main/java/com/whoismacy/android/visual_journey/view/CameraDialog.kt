@@ -1,5 +1,9 @@
 package com.whoismacy.android.visual_journey.view
 
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,8 +29,17 @@ import androidx.compose.ui.window.Dialog
 fun CameraDialog(
     habitContent: String,
     onDismissRequest: () -> Unit,
-    onConfirmation: () -> Unit,
+    onCameraConfirmation: () -> Unit,
 ) {
+    val singlePhotoPicker =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.PickVisualMedia(),
+            onResult = { uri ->
+                Log.d("CAMERADIALOG", uri.toString())
+                onDismissRequest()
+            },
+        )
+
     Dialog(
         onDismissRequest = { onDismissRequest() },
     ) {
@@ -63,18 +76,23 @@ fun CameraDialog(
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     TextButton(
-                        onClick = { onDismissRequest() },
-                        modifier = Modifier.padding(16.dp),
-                    ) {
-                        Text("Cancel")
-                    }
-                    TextButton(
-                        onClick = {
-                            onConfirmation()
-                        },
+                        onClick = { onCameraConfirmation() },
                         modifier = Modifier.padding(16.dp),
                     ) {
                         Text("Capture")
+                    }
+                    TextButton(
+                        onClick = {
+                            singlePhotoPicker.launch(
+                                PickVisualMediaRequest(
+                                    ActivityResultContracts
+                                        .PickVisualMedia.ImageOnly,
+                                ),
+                            )
+                        },
+                        modifier = Modifier.padding(16.dp),
+                    ) {
+                        Text("Select from Gallery")
                     }
                 }
             }
