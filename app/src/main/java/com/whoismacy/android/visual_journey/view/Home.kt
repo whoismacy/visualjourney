@@ -10,10 +10,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipAnchorPosition
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
@@ -22,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.whoismacy.android.visual_journey.CameraActivity
+import com.whoismacy.android.visual_journey.NewHabitActivity
 import com.whoismacy.android.visual_journey.ui.theme.VisualJourneyTheme
 
 @Composable
@@ -74,9 +85,35 @@ fun HomeLandScape() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePortrait() {
+    val context = LocalContext.current
     Scaffold(
         bottomBar = {
             BottomNavigationBar()
+        },
+        floatingActionButton = {
+            TooltipBox(
+                positionProvider =
+                    TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Left),
+                tooltip = {
+                    PlainTooltip(
+                        shape = TooltipDefaults.plainTooltipContainerShape,
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    ) {
+                        Text(text = "Create new Habit")
+                    }
+                },
+                state = rememberTooltipState(),
+            ) {
+                FloatingActionButton(
+                    onClick =
+                        { context.startActivity(NewHabitActivity.createIntent(context)) },
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add habit",
+                    )
+                }
+            }
         },
     ) { innerPadding ->
         HomePage(
