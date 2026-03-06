@@ -3,6 +3,7 @@ package com.whoismacy.android.visual_journey
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -24,21 +25,25 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.whoismacy.android.visual_journey.model.HabitRepository
 import com.whoismacy.android.visual_journey.ui.theme.VisualJourneyTheme
+import kotlinx.coroutines.launch
 
 class NewHabitActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
         setContent {
             VisualJourneyTheme {
                 HabitCard(
+                    context = this,
                     onClose = { finish() },
                 )
             }
@@ -51,9 +56,14 @@ class NewHabitActivity : ComponentActivity() {
 }
 
 @Composable
-fun HabitCard(onClose: () -> Unit) {
+fun HabitCard(
+    context: Context,
+    onClose: () -> Unit,
+) {
     var shortHabitValue: String by rememberSaveable { mutableStateOf("") }
     var fullHabitValue: String by rememberSaveable { mutableStateOf("") }
+    var isSaving by rememberSaveable { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
 
     Box(
         modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
@@ -104,8 +114,30 @@ fun HabitCard(onClose: () -> Unit) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
+                    enabled = !isSaving,
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { onClose() },
+                    onClick = {
+                        isSaving = true
+                        if (shortHabitValue.isNotEmpty() && fullHabitValue.isNotEmpty()) {
+                            scope.launch {
+                                try {
+                                    HabitRepository.get().createHabit(
+                                        shortHabitValue,
+                                        fullHabitValue,
+                                    )
+                                    onClose()
+                                    isSaving = false
+                                } catch (e: Exception) {
+                                    Toast
+                                        .makeText(
+                                            context,
+                                            "Failed to create Habit : ${e.message}",
+                                            Toast.LENGTH_SHORT,
+                                        ).show()
+                                }
+                            }
+                        }
+                    },
                 ) {
                     Text(text = "Save")
                 }

@@ -16,7 +16,32 @@ class HabitRepository private constructor(
                 DATABASE_NAME,
             ).build()
 
+    private val visualJourneyDao = database.visualJourneyDao()
+
+    suspend fun createHabit(
+        habitName: String,
+        fullHabitName: String,
+    ) {
+        visualJourneyDao.createHabit(habitName, fullHabitName)
+    }
+
+    suspend fun getHabitId(habitName: String) {
+        visualJourneyDao.getHabitId(habitName)
+    }
+
+    suspend fun deleteHabit(habitId: Int) {
+        visualJourneyDao.deleteHabit(habitId)
+    }
+
+    suspend fun markHabitComplete(
+        habitId: String,
+        status: Boolean,
+    ) {
+        visualJourneyDao.markHabitComplete(habitId, status)
+    }
+
     companion object {
+        @Suppress("ktlint:standard:property-naming")
         private var INSTANCE: HabitRepository? = null
 
         fun initialize(context: Context) {

@@ -17,12 +17,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.whoismacy.android.visual_journey.HistoryActivity
 import com.whoismacy.android.visual_journey.R
 
 @Composable
 fun BottomNavigationBar(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     NavigationBar(modifier = modifier) {
         NavigationBarItem(
             icon = {
@@ -48,7 +51,9 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
                 Text(stringResource(R.string.bottom_navigation_history))
             },
             selected = false,
-            onClick = {},
+            onClick = {
+                context.startActivity(HistoryActivity.createIntent(context))
+            },
         )
         NavigationBarItem(
             icon = {
